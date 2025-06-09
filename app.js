@@ -5,11 +5,13 @@ document.getElementById('form-gasto').addEventListener('submit', function (e) {
   const descripcion = document.getElementById('descripcion').value;
   const monto = parseFloat(document.getElementById('monto').value);
   const fecha = document.getElementById('fecha').value;
+  const tipo = document.getElementById('tipo-gasto').value;
 
   const gasto = {
     descripcion,
     monto,
-    fecha
+    fecha,
+    tipo
   };
 
   let gastos = JSON.parse(localStorage.getItem('gastos')) || [];
@@ -25,9 +27,9 @@ function mostrarGastos() {
   lista.innerHTML = '';
 
   const gastos = JSON.parse(localStorage.getItem('gastos')) || [];
-  gastos.forEach((gasto, index) => {
+  gastos.forEach((gasto) => {
     const li = document.createElement('li');
-    li.textContent = `${gasto.fecha} - ${gasto.descripcion}: Q${gasto.monto.toFixed(2)}`;
+    li.textContent = `${gasto.fecha} - ${gasto.descripcion} (${gasto.tipo}): Q${gasto.monto.toFixed(2)}`;
     lista.appendChild(li);
   });
 }
