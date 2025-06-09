@@ -35,3 +35,42 @@ function mostrarGastos() {
 }
 
 mostrarGastos();
+
+// Ingresos
+document.getElementById('form-ingreso').addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  const descripcion = document.getElementById('descripcion-ingreso').value;
+  const monto = parseFloat(document.getElementById('monto-ingreso').value);
+  const medio = document.getElementById('medio-ingreso').value;
+  const fecha = document.getElementById('fecha-ingreso').value;
+
+  const ingreso = {
+    descripcion,
+    monto,
+    medio,
+    fecha
+  };
+
+  let ingresos = JSON.parse(localStorage.getItem('ingresos')) || [];
+  ingresos.push(ingreso);
+  localStorage.setItem('ingresos', JSON.stringify(ingresos));
+
+  mostrarIngresos();
+  this.reset();
+});
+
+function mostrarIngresos() {
+  const lista = document.getElementById('lista-ingresos');
+  lista.innerHTML = '';
+
+  const ingresos = JSON.parse(localStorage.getItem('ingresos')) || [];
+  ingresos.forEach((ingreso) => {
+    const li = document.createElement('li');
+    li.textContent = `${ingreso.fecha} - ${ingreso.descripcion} (${ingreso.medio}): Q${ingreso.monto.toFixed(2)}`;
+    lista.appendChild(li);
+  });
+}
+
+mostrarIngresos();
+
