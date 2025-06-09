@@ -29,6 +29,22 @@
     <button type="submit">Agregar gasto</button>
   </form>
 
+  <h2>Registrar ingresos</h2>
+<form id="form-ingreso">
+  <input type="text" id="descripcion-ingreso" placeholder="Descripción del ingreso" required />
+  <input type="number" id="monto-ingreso" placeholder="Monto (Q)" required />
+  <select id="medio-ingreso" required>
+    <option value="">Selecciona medio</option>
+    <option value="Efectivo">Efectivo</option>
+    <option value="Depósito">Depósito</option>
+  </select>
+  <input type="date" id="fecha-ingreso" required />
+  <button type="submit">Agregar ingreso</button>
+</form>
+
+<h2>Ingresos registrados</h2>
+<ul id="lista-ingresos"></ul>
+
   <h2>Gastos registrados</h2>
   <ul id="lista-gastos"></ul>
 
