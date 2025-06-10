@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,44 +8,73 @@
 </head>
 <body>
   <h1>Inventoria</h1>
+
+  <!-- Formulario de gastos -->
   <form id="form-gasto">
     <input type="text" id="descripcion" placeholder="Descripción del gasto" required />
     <input type="number" id="monto" placeholder="Monto (Q)" required />
     <input type="date" id="fecha" required />
     <select id="tipo-gasto" required>
-    <option value="">Selecciona tipo de gasto</option>
-    <option value="Gastos fijos">Gastos fijos (luz, agua, internet)</option>
-    <option value="Supermercado">Supermercado</option>
-    <option value="La Esmeralda">La Esmeralda</option>
-    <option value="Mercado">Mercado</option>
-    <option value="Comida rápida">Comida rápida</option>
-    <option value="Tienda">Tienda</option>
-    <option value="Gasolina carro">Gasolina carro</option>
-    <option value="Gasolina moto">Gasolina moto</option>
-    <option value="Apoyo mamá Aury">Apoyo mamá Aury</option>
-    <option value="Apoyo mamá Gloria">Apoyo mamá Gloria</option>
-  </select>
+      <option value="">Selecciona tipo de gasto</option>
+      <option value="Gastos fijos">Gastos fijos (luz, agua, internet)</option>
+      <option value="Supermercado">Supermercado</option>
+      <option value="La Esmeralda">La Esmeralda</option>
+      <option value="Mercado">Mercado</option>
+      <option value="Comida rápida">Comida rápida</option>
+      <option value="Tienda">Tienda</option>
+      <option value="Gasolina carro">Gasolina carro</option>
+      <option value="Gasolina moto">Gasolina moto</option>
+      <option value="Apoyo mamá Aury">Apoyo mamá Aury</option>
+      <option value="Apoyo mamá Gloria">Apoyo mamá Gloria</option>
+    </select>
     <button type="submit">Agregar gasto</button>
   </form>
 
+  <!-- Formulario de ingresos -->
   <h2>Registrar ingresos</h2>
-<form id="form-ingreso">
-  <input type="text" id="descripcion-ingreso" placeholder="Descripción del ingreso" required />
-  <input type="number" id="monto-ingreso" placeholder="Monto (Q)" required />
-  <select id="medio-ingreso" required>
-    <option value="">Selecciona medio</option>
-    <option value="Efectivo">Efectivo</option>
-    <option value="Depósito">Depósito</option>
-  </select>
-  <input type="date" id="fecha-ingreso" required />
-  <button type="submit">Agregar ingreso</button>
-</form>
+  <form id="form-ingreso">
+    <input type="text" id="descripcion-ingreso" placeholder="Descripción del ingreso" required />
+    <input type="number" id="monto-ingreso" placeholder="Monto (Q)" required />
+    <select id="medio-ingreso" required>
+      <option value="">Selecciona medio</option>
+      <option value="Efectivo">Efectivo</option>
+      <option value="Depósito">Depósito</option>
+    </select>
+    <input type="date" id="fecha-ingreso" required />
+    <button type="submit">Agregar ingreso</button>
+  </form>
 
-<h2>Ingresos registrados</h2>
-<ul id="lista-ingresos"></ul>
+  <!-- Botón para mostrar/ocultar tablas -->
+  <button id="toggle-tablas">Mostrar registros</button>
 
-  <h2>Gastos registrados</h2>
-  <ul id="lista-gastos"></ul>
+  <!-- Contenedor de tablas, oculto por defecto -->
+  <div id="tablas-registros" style="display: none;">
+    <h2>Ingresos registrados</h2>
+    <table id="tabla-ingresos">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Descripción</th>
+          <th>Medio</th>
+          <th>Monto (Q)</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <h2>Gastos registrados</h2>
+    <table id="tabla-gastos">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Descripción</th>
+          <th>Tipo</th>
+          <th>Monto (Q)</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
 
   <script src="app.js"></script>
 </body>
