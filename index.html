@@ -9,7 +9,7 @@
 <body>
   <h1>Inventoria</h1>
 
-  <!-- Formulario de gastos -->
+  <!-- Formulario de Gastos -->
   <form id="form-gasto">
     <input type="text" id="descripcion" placeholder="Descripción del gasto" required />
     <input type="number" id="monto" placeholder="Monto (Q)" required />
@@ -30,7 +30,7 @@
     <button type="submit">Agregar gasto</button>
   </form>
 
-  <!-- Formulario de ingresos -->
+  <!-- Formulario de Ingresos -->
   <h2>Registrar ingresos</h2>
   <form id="form-ingreso">
     <input type="text" id="descripcion-ingreso" placeholder="Descripción del ingreso" required />
@@ -44,19 +44,19 @@
     <button type="submit">Agregar ingreso</button>
   </form>
 
-  <!-- Botón para mostrar/ocultar tablas -->
-  <button id="toggle-tablas">Mostrar registros</button>
+  <!-- Botones de Toggle -->
+  <div class="toggles">
+    <button id="toggle-tablas">Mostrar registros</button>
+    <button id="toggle-estadisticas">Mostrar estadísticas</button>
+  </div>
 
-  <!-- Contenedor de tablas, oculto por defecto -->
+  <!-- Sección de Tablas (Registros) -->
   <div id="tablas-registros" style="display: none;">
     <h2>Ingresos registrados</h2>
     <table id="tabla-ingresos">
       <thead>
         <tr>
-          <th>Fecha</th>
-          <th>Descripción</th>
-          <th>Medio</th>
-          <th>Monto (Q)</th>
+          <th>Fecha</th><th>Descripción</th><th>Medio</th><th>Monto (Q)</th>
         </tr>
       </thead>
       <tbody></tbody>
@@ -66,16 +66,37 @@
     <table id="tabla-gastos">
       <thead>
         <tr>
-          <th>Fecha</th>
-          <th>Descripción</th>
-          <th>Tipo</th>
-          <th>Monto (Q)</th>
+          <th>Fecha</th><th>Descripción</th><th>Tipo</th><th>Monto (Q)</th>
         </tr>
       </thead>
       <tbody></tbody>
     </table>
   </div>
 
+  <!-- Sección de Estadísticas -->
+  <div id="estadisticas" style="display: none;">
+    <h2>Estadísticas</h2>
+
+    <h3>Gastos por tipo</h3>
+    <table id="tabla-est-gastos">
+      <thead>
+        <tr><th>Tipo</th><th>Total (Q)</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <h3>Ingresos por medio</h3>
+    <table id="tabla-est-ingresos">
+      <thead>
+        <tr><th>Medio</th><th>Total (Q)</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <h3 id="balance">Balance: Q0.00</h3>
+  </div>
+
   <script src="app.js"></script>
 </body>
 </html>
+
