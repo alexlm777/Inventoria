@@ -1,5 +1,5 @@
-// app.js
-document.getElementById('form-gasto').addEventListener('submit', function (e) {
+// —————————— GASTOS ——————————
+document.getElementById('form-gasto').addEventListener('submit', function(e) {
   e.preventDefault();
 
   const descripcion = document.getElementById('descripcion').value;
@@ -7,14 +7,9 @@ document.getElementById('form-gasto').addEventListener('submit', function (e) {
   const fecha = document.getElementById('fecha').value;
   const tipo = document.getElementById('tipo-gasto').value;
 
-  const gasto = {
-    descripcion,
-    monto,
-    fecha,
-    tipo
-  };
+  const gasto = { descripcion, monto, fecha, tipo };
 
-  let gastos = JSON.parse(localStorage.getItem('gastos')) || [];
+  const gastos = JSON.parse(localStorage.getItem('gastos')) || [];
   gastos.push(gasto);
   localStorage.setItem('gastos', JSON.stringify(gastos));
 
@@ -23,21 +18,24 @@ document.getElementById('form-gasto').addEventListener('submit', function (e) {
 });
 
 function mostrarGastos() {
-  const lista = document.getElementById('lista-gastos');
-  lista.innerHTML = '';
+  const tbody = document.querySelector('#tabla-gastos tbody');
+  tbody.innerHTML = '';
 
   const gastos = JSON.parse(localStorage.getItem('gastos')) || [];
-  gastos.forEach((gasto) => {
-    const li = document.createElement('li');
-    li.textContent = `${gasto.fecha} - ${gasto.descripcion} (${gasto.tipo}): Q${gasto.monto.toFixed(2)}`;
-    lista.appendChild(li);
+  gastos.forEach(g => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${g.fecha}</td>
+      <td>${g.descripcion}</td>
+      <td>${g.tipo}</td>
+      <td>Q${g.monto.toFixed(2)}</td>
+    `;
+    tbody.appendChild(tr);
   });
 }
 
-mostrarGastos();
-
-// Ingresos
-document.getElementById('form-ingreso').addEventListener('submit', function (e) {
+// —————————— INGRESOS ——————————
+document.getElementById('form-ingreso').addEventListener('submit', function(e) {
   e.preventDefault();
 
   const descripcion = document.getElementById('descripcion-ingreso').value;
@@ -45,14 +43,9 @@ document.getElementById('form-ingreso').addEventListener('submit', function (e) 
   const medio = document.getElementById('medio-ingreso').value;
   const fecha = document.getElementById('fecha-ingreso').value;
 
-  const ingreso = {
-    descripcion,
-    monto,
-    medio,
-    fecha
-  };
+  const ingreso = { descripcion, monto, medio, fecha };
 
-  let ingresos = JSON.parse(localStorage.getItem('ingresos')) || [];
+  const ingresos = JSON.parse(localStorage.getItem('ingresos')) || [];
   ingresos.push(ingreso);
   localStorage.setItem('ingresos', JSON.stringify(ingresos));
 
@@ -61,16 +54,33 @@ document.getElementById('form-ingreso').addEventListener('submit', function (e) 
 });
 
 function mostrarIngresos() {
-  const lista = document.getElementById('lista-ingresos');
-  lista.innerHTML = '';
+  const tbody = document.querySelector('#tabla-ingresos tbody');
+  tbody.innerHTML = '';
 
   const ingresos = JSON.parse(localStorage.getItem('ingresos')) || [];
-  ingresos.forEach((ingreso) => {
-    const li = document.createElement('li');
-    li.textContent = `${ingreso.fecha} - ${ingreso.descripcion} (${ingreso.medio}): Q${ingreso.monto.toFixed(2)}`;
-    lista.appendChild(li);
+  ingresos.forEach(i => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${i.fecha}</td>
+      <td>${i.descripcion}</td>
+      <td>${i.medio}</td>
+      <td>Q${i.monto.toFixed(2)}</td>
+    `;
+    tbody.appendChild(tr);
   });
 }
 
+// ———————— TOGGLE TABLAS ————————
+const btnToggle = document.getElementById('toggle-tablas');
+const contenedor = document.getElementById('tablas-registros');
+
+btnToggle.addEventListener('click', () => {
+  const visible = contenedor.style.display === 'block';
+  contenedor.style.display = visible ? 'none' : 'block';
+  btnToggle.textContent = visible ? 'Mostrar registros' : 'Ocultar registros';
+});
+
+// ———————— INICIALIZACIÓN ————————
 mostrarIngresos();
+mostrarGastos();
 
