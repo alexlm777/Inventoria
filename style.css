@@ -4,7 +4,7 @@ body {
   background-color: #f4f4f4;
 }
 
-h1 {
+h1, h2, h3 {
   color: #4a148c;
 }
 
@@ -17,21 +17,26 @@ input, select, button {
   margin: 5px;
 }
 
-button#toggle-tablas {
-  background-color: #4a148c;
-  color: white;
-  border: none;
-  cursor: pointer;
+.toggles {
+  margin: 20px 0;
 }
 
-button#toggle-tablas:hover {
+.toggles button {
+  background-color: #4a148c;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.toggles button:hover {
   opacity: 0.9;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 15px 0;
+  margin-bottom: 20px;
 }
 
 th, td {
@@ -44,3 +49,4 @@ th {
   background-color: #4a148c;
   color: white;
 }
+
