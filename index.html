@@ -51,6 +51,16 @@
     <button id="toggle-estadisticas">Mostrar estadísticas</button>
   </div>
 
+  <!-- Campo de filtro -->
+<input type="text" id="filtro-tabla" placeholder="Filtrar registros..." />
+
+<!-- Botones de exportación -->
+<button id="exportar-gastos">Exportar gastos</button>
+<button id="exportar-ingresos">Exportar ingresos</button>
+
+<!-- Librería SheetJS para exportar -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
   <!-- Sección de Tablas (Registros) -->
   <div id="tablas-registros" style="display: none;">
     <h2>Ingresos registrados</h2>
