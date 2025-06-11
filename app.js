@@ -146,4 +146,34 @@ document.getElementById('exportar-ingresos').addEventListener('click', () => {
   exportarTabla('tabla-ingresos', 'ingresos.xlsx');
 });
 
+// ——————————————— REGISTRO DE USUARIOS ———————————————
+document.getElementById("form-usuario").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const nombre = document.getElementById("nombre").value;
+  const correo = document.getElementById("correo").value;
+  const contrasena = document.getElementById("contrasena").value;
+  const id_familia = document.getElementById("id_familia").value;
+
+  try {
+    const respuesta = await fetch("http://localhost:3000/usuarios", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ nombre, correo, contrasena, id_familia })
+    });
+
+    const datos = await respuesta.json();
+    document.getElementById("mensaje-usuario").textContent = datos.mensaje || datos.error;
+
+    if (respuesta.ok) {
+      document.getElementById("form-usuario").reset();
+    }
+  } catch (error) {
+    document.getElementById("mensaje-usuario").textContent = "Error al conectar con el servidor.";
+    console.error("Error al registrar usuario:", error);
+  }
+});
+
 
