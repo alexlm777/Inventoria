@@ -115,4 +115,35 @@ mostrarIngresos();
 mostrarGastos();
 mostrarEstadisticas();
 
+// ——————————————— FILTRO DE TABLAS ———————————————
+document.getElementById('filtro-tabla').addEventListener('keyup', function () {
+  const filtro = this.value.toLowerCase();
+
+  // Filtra ambas tablas
+  ['tabla-gastos', 'tabla-ingresos'].forEach(id => {
+    const filas = document.querySelectorAll(`#${id} tbody tr`);
+    filas.forEach(fila => {
+      const textoFila = fila.textContent.toLowerCase();
+      fila.style.display = textoFila.includes(filtro) ? '' : 'none';
+    });
+  });
+});
+
+// ——————————————— EXPORTACIÓN A EXCEL ———————————————
+function exportarTabla(idTabla, nombreArchivo) {
+  const tabla = document.getElementById(idTabla);
+  const wb = XLSX.utils.book_new();
+  const ws = XLSX.utils.table_to_sheet(tabla);
+  XLSX.utils.book_append_sheet(wb, ws, "Hoja1");
+  XLSX.writeFile(wb, nombreArchivo);
+}
+
+document.getElementById('exportar-gastos').addEventListener('click', () => {
+  exportarTabla('tabla-gastos', 'gastos.xlsx');
+});
+
+document.getElementById('exportar-ingresos').addEventListener('click', () => {
+  exportarTabla('tabla-ingresos', 'ingresos.xlsx');
+});
+
 
